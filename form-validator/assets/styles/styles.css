@@ -52,6 +52,14 @@ input {
   border-color: var(--error-color);
 }
 
+small {
+  font: inherit;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: darkred;
+  visibility: hidden;
+}
+
 .form-control.error small {
   visibility: visible;
 }
