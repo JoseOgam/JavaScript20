@@ -49,9 +49,55 @@ function validateFirstName() {
   }
 }
 
+// validate last name
+
+function validateLastName() {
+    const lastNameValue = lastName.value.trim();
+    const lastNamePrevious = lastName.previousElementSibling;
+    const lastNameParent = lastName.parentElement
+    const regexTestPassed = regexText(lastNameValue)
+
+    if (lastNameValue === '')
+    {
+        lastNamePrevious.textContent = lastNameErrorMsg
+        lastNameParent.classList.add('error')
+    } else
+    {
+        if (!regexTestPassed)
+        {
+            lastNamePrevious.textContent = lastNameErrorMsg2
+            lastNameParent.classList.add('error')
+        } else
+        {
+           lastNameParent.classList.remove('error') 
+        }
+    }
+
+    if (firstValidation)
+    {
+        lastName.addEventListener('input', validateLastName)
+    }
+}
+
+// test for a valid email address
+function checkEmailFormat(email) {
+    const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    return pattern.test(String(email).toLowerCase())
+
+}
+
+//validate email address
+function validateEmailAddress() {
+    
+}
+
+
 function validateFormHandler() {
     validateFirstName();
+    validateLastName();
+    validateEmailAddress();
     firstValidation = false;
-    console.log('posted')
+   
 }
 submitBtn.addEventListener('click', validateFormHandler)
