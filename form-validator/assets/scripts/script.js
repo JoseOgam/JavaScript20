@@ -89,7 +89,29 @@ function checkEmailFormat(email) {
 
 //validate email address
 function validateEmailAddress() {
-    
+    const emailValue = email.value.trim()
+    const emailPrevious = email.previousElementSibling
+    const emailParent = email.parentElement
+    const emailTestPassed = checkEmailFormat(emailValue)
+    if (emailValue === '')
+    {
+        emailPrevious.textContent = emailErrorMsg
+        emailParent.classList.add('error')
+    } else
+    {
+        if (!emailTestPassed)
+        {
+            emailPrevious.textContent = emailErrorMsg2
+            emailParent.classList.add('error')
+        } else
+        {
+            emailParent.classList.remove('error')
+        }
+    }
+    if (firstValidation)
+    {
+        email.addEventListener('input', validateEmailAddress)
+    }
 }
 
 
