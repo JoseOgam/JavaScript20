@@ -29,9 +29,7 @@ function searchMeal(e) {
                 resultHeading.innerHTML = `<h2>There is no search result for '${term}'</h2>`
             } else
             {
-                mealsEL.innerHTML = data.meals
-                .map(
-              meal => `
+                mealsEL.innerHTML = data.meals.map( meal => `
             <div class="meal">
               <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
               <div class="meal-info" data-mealID="${meal.idMeal}">
