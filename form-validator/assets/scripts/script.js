@@ -114,11 +114,40 @@ function validateEmailAddress() {
     }
 }
 
+//validate password
+
+function validatePassword() {
+    const passwordValue = password.value.trim();
+    const passwordPrevious = password.previousElementSibling;
+    const passwordParent = password.parentElement;
+
+    if (passwordValue === '' || (passwordValue.length > 0 && passwordValue.length < 6))
+    {
+        if (passwordValue === '')
+        {
+            passwordPrevious.textContent = passwordErrorMsg
+        } else
+        {
+            passwordPrevious.textContent = passwordErrorMsg2
+        }
+        passwordParent.classList.add('error')
+    } else
+    {
+        password.classList.remove('error')
+    }
+    
+    if (firstValidation)
+    {
+    password.addEventListener('input', validatePassword)
+}
+}
+
 
 function validateFormHandler() {
     validateFirstName();
     validateLastName();
     validateEmailAddress();
+    validatePassword();
     firstValidation = false;
    
 }
